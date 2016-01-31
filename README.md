@@ -6,3 +6,6 @@ This class provides functions that deal with the device and simplifies the calls
 
 ## Image Utils
 This class provides functions that treat images (scale, mask, crop, QR creation, etc.).
+
+## License
+SwiftUtils is released under the MIT license. See LICENSE for details.
