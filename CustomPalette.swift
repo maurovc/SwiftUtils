@@ -11,12 +11,17 @@ import UIKit
 
 extension UIColor {
     
-    public convenience init(rgb string: String, alpha: CGFloat = 1.0) {
-        var rgbValue: UInt32 = 0;
+    private class func createScanner(hexString string: String) -> NSScanner {
         let scanner = NSScanner(string: string)
         if let _ = string.rangeOfString("#") {
             scanner.scanLocation = 1
         }
+        return scanner
+    }
+    
+    public convenience init(rgb string: String, alpha: CGFloat = 1.0) {
+        var rgbValue: UInt32 = 0;
+        let scanner = UIColor.createScanner(hexString: string)
         scanner.scanHexInt(&rgbValue)
         let div     = CGFloat(255)
         let red     = CGFloat((rgbValue & 0xFF0000) >> 16) / div
@@ -27,10 +32,7 @@ extension UIColor {
     
     public convenience init(rgba string: String) {
         var rgbaValue: UInt32 = 0;
-        let scanner = NSScanner(string: string)
-        if let _ = string.rangeOfString("#") {
-            scanner.scanLocation = 1
-        }
+        let scanner = UIColor.createScanner(hexString: string)
         scanner.scanHexInt(&rgbaValue)
         let div     = CGFloat(255)
         let red     = CGFloat((rgbaValue & 0xFF000000) >> 24) / div
