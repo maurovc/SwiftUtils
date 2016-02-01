@@ -11,18 +11,33 @@ import UIKit
 
 extension UIColor {
     
-    class func colorWith(hexString string: String, andAlpha alpha: CGFloat) -> UIColor {
+    public convenience init(rgb string: String, alpha: CGFloat = 1.0) {
         var rgbValue: UInt32 = 0;
         let scanner = NSScanner(string: string)
         if let _ = string.rangeOfString("#") {
             scanner.scanLocation = 1
         }
         scanner.scanHexInt(&rgbValue)
-        let divisor = CGFloat(255)
-        let red     = CGFloat((rgbValue & 0xFF0000) >> 16) / divisor
-        let green   = CGFloat((rgbValue & 0x00FF00) >>  8) / divisor
-        let blue    = CGFloat( rgbValue & 0x0000FF       ) / divisor
-        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        let div     = CGFloat(255)
+        let red     = CGFloat((rgbValue & 0xFF0000) >> 16) / div
+        let green   = CGFloat((rgbValue & 0x00FF00) >>  8) / div
+        let blue    = CGFloat( rgbValue & 0x0000FF       ) / div
+        self.init(red: red, green: green, blue: blue, alpha: 1.0)
+    }
+    
+    public convenience init(rgba string: String) {
+        var rgbaValue: UInt32 = 0;
+        let scanner = NSScanner(string: string)
+        if let _ = string.rangeOfString("#") {
+            scanner.scanLocation = 1
+        }
+        scanner.scanHexInt(&rgbaValue)
+        let div     = CGFloat(255)
+        let red     = CGFloat((rgbaValue & 0xFF000000) >> 24) / div
+        let green   = CGFloat((rgbaValue & 0x00FF0000) >> 16) / div
+        let blue    = CGFloat((rgbaValue & 0x0000FF00) >>  8) / div
+        let alpha   = CGFloat( rgbaValue & 0x000000FF       ) / div
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
     
     public func hexString(alpha: Bool) -> String {
