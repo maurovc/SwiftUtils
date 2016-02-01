@@ -10,5 +10,8 @@ This ```class``` provides functions that treat images (scale, mask, crop, QR cre
 ## Custom Palette
 CustomPalette is an ```extension``` that provides some handy UIColor related methods.
 
+## Custom Gradients
+CustomGradients is an ```extension``` that provides some handy CAGradientLayer related methods.
+
 ## License
 SwiftUtils is released under the MIT license. See LICENSE for details.
