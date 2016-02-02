@@ -13,5 +13,8 @@ CustomPalette is an ```extension``` that provides some handy UIColor related met
 ## Custom Gradients
 CustomGradients is an ```extension``` that provides some handy CAGradientLayer related methods.
 
+## Stack
+Stack is a ```struct``` that implements this common data structre. This class also includes the implementation fo the custom operator +++.
+
 ## License
 SwiftUtils is released under the MIT license. See LICENSE for details.
