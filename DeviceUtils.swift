@@ -152,6 +152,11 @@ class DeviceUtils {
         return ""
     }
     
+    class func deviceDirectoryURL() -> NSURL {
+        let documentDirectoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        return documentDirectoryURL.first!
+    }
+    
     class func currentDeviceFamily() -> DeviceVersion {
         switch self.deviceHeight() {
             
