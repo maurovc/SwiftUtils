@@ -33,11 +33,11 @@ class DeviceUtils {
     }
     
     class func deviceHeight() -> CGFloat {
-        return self.deviceBounds().size.height
+        return deviceBounds().size.height
     }
     
     class func deviceWidth() -> CGFloat {
-        return self.deviceBounds().size.width
+        return deviceBounds().size.width
     }
     
     class func deviceScale() -> CGFloat {
@@ -55,6 +55,10 @@ class DeviceUtils {
         return (range == nil)
     }
     
+    class func isPortrait() -> Bool {
+        return deviceHeight() > deviceWidth()
+    }
+    
     class func hasTouchID() -> Bool {
         if #available(iOS 8.0, *) {
             let context = LAContext()
@@ -67,9 +71,9 @@ class DeviceUtils {
     
     class func realOnePoint() -> CGFloat {
         if #available(iOS 8.0, *) {
-            return 1.0 / self.deviceNativeScale()!
+            return 1.0 / deviceNativeScale()!
         } else {
-            return 1.0 / self.deviceScale()
+            return 1.0 / deviceScale()
         }
     }
     
@@ -158,7 +162,7 @@ class DeviceUtils {
     }
     
     class func currentDeviceFamily() -> DeviceVersion {
-        switch self.deviceHeight() {
+        switch isPortrait() ? deviceHeight() : deviceWidth() {
             
         case 480:   return DeviceVersion.iPhone4
         case 568:   return DeviceVersion.iPhone5
@@ -170,9 +174,7 @@ class DeviceUtils {
     }
     
     class func iphoneDevice() -> DeviceVersion {
-        let name = self.deviceName()
-        
-        switch name {
+        switch deviceName() {
             
         case "iPod5,1", "iPod7,1":                      return DeviceVersion.iPodTouch
         case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return DeviceVersion.iPhone4

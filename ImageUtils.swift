@@ -82,7 +82,7 @@ class ImageUtils {
     }
     
     class func qrCodeFromString(string: String, forSize size: CGSize) -> UIImage? {
-        if let qrImage = self.qrCodeFromString(string) {
+        if let qrImage = qrCodeFromString(string) {
             let scaleX = size.width / qrImage.extent.size.width
             let scaleY = size.height / qrImage.extent.size.height
             let transformedImage = qrImage.imageByApplyingTransform(CGAffineTransformMakeScale(scaleX, scaleY))
